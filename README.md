@@ -31,4 +31,4 @@ Make sure you have [Suli_Arduino](https://github.com/Seeed-Studio/Suli) and [Sof
 - [AOV7670 300KP VGA Camera Module](http://www.amazon.com/Huhushop-TM-OV7670-Camera-Arduino/dp/B00GASB45G/ref=sr_1_1?ie=UTF8&qid=1423689539&sr=8-1)
 
 ###Our Blog
-[off-sec.com](http://off-sec.com)
+- [off-sec.com](http://off-sec.com)
