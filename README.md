@@ -29,3 +29,6 @@ Make sure you have [Suli_Arduino](https://github.com/Seeed-Studio/Suli) and [Sof
 ###Scheduled to buy
 - [Arduino 2.8" TFT Touch Shield V2.0](http://www.amazon.com/Arduino-2-8-Touch-Shield-V2-0/dp/B00BOZBY7I/ref=sr_1_2?ie=UTF8&qid=1423599070&sr=8-2)
 - [AOV7670 300KP VGA Camera Module](http://www.amazon.com/Huhushop-TM-OV7670-Camera-Arduino/dp/B00GASB45G/ref=sr_1_1?ie=UTF8&qid=1423689539&sr=8-1)
+
+###Our Blog
+[off-sec.com](http://off-sec.com)
