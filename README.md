@@ -22,8 +22,8 @@ Mobile engine for arduino development platform written by Sandro Kalatozishvili 
 Make sure you have [Suli_Arduino](https://github.com/Seeed-Studio/Suli) and [SoftwareSerial](https://github.com/arduino/Arduino/tree/master/libraries/SoftwareSerial) libraries in your arduino libraries folder.
 
 ###Used Arduino Shields
-- [GPRS Shield V2](www.amazon.com/Seeedstudio-Arduino-GPRS-Shield-V2-0/dp/B00BOZ8K6Q/ref=sr_1_1?ie=UTF8&qid=1423689140&sr=8-1)
-- [Arduino Ethernet Shield R3](www.amazon.com/Arduino-Rev3-Ethernet-Shield-R3/dp/B006UT97FE/ref=sr_1_1?ie=UTF8&qid=1423689194&sr=8-1)
+- [GPRS Shield V2](http://www.amazon.com/Seeedstudio-Arduino-GPRS-Shield-V2-0/dp/B00BOZ8K6Q/ref=sr_1_1?ie=UTF8&qid=1423689140&sr=8-1)
+- [Arduino Ethernet Shield R3](http://www.amazon.com/Arduino-Rev3-Ethernet-Shield-R3/dp/B006UT97FE/ref=sr_1_1?ie=UTF8&qid=1423689194&sr=8-1)
 - [HD44780 1602 LCD DISPLAY](http://www.amazon.com/HD44780-DISPLAY-MODULE-Backlight-Arduino/dp/B00FHSPES8/ref=sr_1_2?ie=UTF8&qid=1423689278&sr=8-2)
 
 ###Scheduled
