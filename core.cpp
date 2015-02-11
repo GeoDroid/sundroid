@@ -107,7 +107,7 @@ int is_message_unread()
 }
 
 /*----------------------------------------------------
-Read message and change status readed               */
+Read message and change status to readed               */
 int read_message(int smsIndex, char *msg, int length, char *phone, char *date)  
 {
     int i = 0;
