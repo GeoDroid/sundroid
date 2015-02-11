@@ -91,6 +91,7 @@ void loop()
    
   if(inComing)
   {
+    /* Read GPRS module buffer */
     sim900_read_buffer(gprsBuffer,32,DEFAULT_TIMEOUT);
       
     /* Chek if there is incomming call and answer */
