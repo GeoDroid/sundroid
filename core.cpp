@@ -190,6 +190,7 @@ int delete_message(int index)
     char cmd[16];
     snprintf(cmd,sizeof(cmd),"AT+CMGD=%d\r\n",index);
     if(0 != sim900_check_with_cmd(cmd,"OK",DEFAULT_TIMEOUT,CMD)) return -1;
+    
     return 0;    
 }
 
