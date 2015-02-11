@@ -1,6 +1,6 @@
 # SunDroid v0.2 Nightlie Build
 ### Description
-Mobile engine for arduino development platform written by Sandro Kalatozishvili and Niko Peikrishvili and licensed by GNU GPL 3. Softwear was created for educational purposes. This program is distributed in the hope that it will be useful for anyone nterested in this field.
+Mobile engine for arduino development platform written by Sandro Kalatozishvili and Niko Peikrishvili and licensed by GNU GPL 3. Softwear was writed for educational purposes and is distributed in the hope that it will be useful for anyone interested in this field.
 
 ###Functions
 - Make a call
