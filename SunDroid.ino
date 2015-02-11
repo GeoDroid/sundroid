@@ -99,10 +99,10 @@ void loop()
     /* Chek if there is new SMS and print */
     else if(NULL != (s = strstr(gprsBuffer,"+CMTI: \"SM\""))) get_sms();
       
-    /* Send message commented because we have not keyboard yet */
+    /* Send message commented because we have not physical keyboard yet */
     //send_message(NUMBER, MESSAGE);
         
-    /* Make call commented because we have not keyboard yet */
+    /* Make call commented because we have not physical keyboard yet */
     //make_call(NUMBER);
     
     /* Cleanup GPRS module buffer */
