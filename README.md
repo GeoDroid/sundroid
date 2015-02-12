@@ -1,6 +1,6 @@
 # SunDroid v0.2 Nightlie
 ### Description
-This software is free mobile engine for arduino development platform written by Sandro Kalatozishvili and Niko Peikrishvili and licensed by GNU GPL 3. Softwear is written for educational purposes and is distributed in the hope that it will be useful for anyone interested in this field.
+This software is free mobile engine for arduino development platform written by Sandro Kalatozishvili and Niko Peikrishvili and licensed by GNU GPL 3. Software is written for educational purposes and is distributed in the hope that it will be useful for anyone interested in this field.
 
 ###Functions
 - Make a call
