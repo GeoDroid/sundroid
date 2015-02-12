@@ -215,14 +215,14 @@ int answer(void)
 }
 
 /*----------------------------------------------------
-check if GPRS module is readable or not             */
+Check if GPRS module is readable or not             */
 int GPRS::readable(void)
 {
     return sim900_check_readable();
 }
 
 /*----------------------------------------------------
-check few times if GPRS module is readable or not   */
+Check few times if GPRS module is readable or not   */
 int GPRS::wait_readable(int wait_time)
 {
     return sim900_wait_readable(wait_time);
