@@ -31,7 +31,6 @@ char sms[SMSLENGTH];
 char gprsBuffer[64];
 const int btnYes = 7;
 const int btnNo = 6;
-int buttonState = 0;
 int inComing = 0;
 int i = 0;
 char *s = NULL;
