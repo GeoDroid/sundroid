@@ -12,8 +12,8 @@ Main file of SunDroid v0.2-Nightlie
 #include <SoftwareSerial.h>
 #include <LiquidCrystal.h>
 #include <Wire.h>
+#include <Suli.h>
 #include "core.h"
-#include "Suli.h"
 
 #define PIN_TX 7
 #define PIN_RX 8
