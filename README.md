@@ -7,7 +7,7 @@ This software is free mobile engine for arduino development platform written by 
 - Answer to call
 - Send message
 - Recieve message
-- Add sdcard support
+- sdcard support
 
 ###TODO
 - Add touchscreen support
