@@ -10,37 +10,47 @@ Main file of SunDroid v0.2-Nightlie
 ----------------------------------------------------*/
 
 #include <SoftwareSerial.h>
-#include <LiquidCrystal.h>
+#include <TFT.h>
+#include <SPI.h>
 #include <Wire.h>
 #include <Suli.h>
 #include "core.h"
 
+/* Define pins for LCD Display */
+#define cs   10
+#define dc   9
+#define rst  6
+
+/* Define pins for GSM/GPRS Shield */
 #define PIN_TX 7
 #define PIN_RX 8
 #define BAUDRATE 9600
 #define SMSLENGTH 160
+
+/* Define pins for CALL/SMS Functions */
 #define NUMBER "995598998592"
 #define MESSAGE "dzudzu"
 #define CALL 1
 #define SMS 0
 
+/* Used Variables */
+const int btnYes = 1;
+const int btnNo = 0;
 int smsIndex = 0;
+int inComing = 0;
+int i = 0;
 char phone[16];
 char date[24];
 char sms[SMSLENGTH];
 char gprsBuffer[64];
-const int btnYes = 7;
-const int btnNo = 6;
-int inComing = 0;
-int i = 0;
 char *s = NULL;
 
 /* YES/NO button flags */
 int yesState = 0;
 int noState = 0;
 
-/* Setup LCD Pins */
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+/* Setup LCD pins */
+TFT TFTscreen = TFT(cs, dc, rst);
 
 /* Set RX,TX and PWR BaudRate */
 GPRS myGPRS (PIN_TX,PIN_RX,BAUDRATE);
@@ -58,19 +68,11 @@ void get_sms()
       /* Delete old SMS' from SIM memory */
       delete_message(smsIndex);
 
-      /* Print Data */
-      lcd.print("From : ");
-      lcd.println(phone);
-      lcd.setCursor(0, 1);
-      lcd.print("Time: ");
-      lcd.println(date);
-      delay(3000);
-
-      /* Print Message */
-      lcd.setCursor(0, 0);
-      lcd.print("Message: ");
-      lcd.setCursor(0, 1);
-      lcd.println(sms);
+       /* Print Message */
+      TFTscreen.stroke(255,255,255);
+      TFTscreen.setTextSize(1);
+      TFTscreen.text("Message\n ",0,50);
+      TFTscreen.text(sms,0,60);
     }
 }
 
@@ -122,21 +124,22 @@ void setup()
   pinMode(btnNo, INPUT);
   
   /* Setup LCD Display */
-  pinMode(9, OUTPUT);  
-  analogWrite(9, 50);   
-  lcd.begin(16, 2);
-  lcd.print("Welcome to SunDroid");
-  lcd.setCursor(0, 1);
-  lcd.print("System is running");
+  TFTscreen.begin();
+  TFTscreen.background(0, 0, 0);
+  TFTscreen.stroke(255,255,255);
+  TFTscreen.setTextSize(1);
+  TFTscreen.text("SunDroid Is Running!\n ",0,0);
+  TFTscreen.setTextSize(2);
+  
 
   /* Setup GPRS/GSM Serial */
   Serial.begin(9600);
-  while(0 != myGPRS.init()) {
+  while(myGPRS.init()) {
     delay(1000);
-    lcd.print("Init error.");
+    TFTscreen.text("GSM/GPRS Init Error!\n ",0,20);
   }
-   delay(3000);
-  lcd.print("Ready to recive data.");
+  delay(3000);
+  TFTscreen.text("SunDrid is ready!\n ",0,20);
 }
 
 /*------------------------------------
@@ -151,11 +154,26 @@ void loop()
   {
     /* Read GSM/GPRS buffer */
     sim900_read_buffer(gprsBuffer,32,DEFAULT_TIMEOUT);
+    
+    /* Setup Display */
+    //TFTscreen.stroke(255,255,255);
+    TFTscreen.setTextSize(2);
       
     /* Chek if there is incomming call and answer or not */
-    if(NULL != strstr(gprsBuffer,"RING")) make_reaction(CALL);
+    if(NULL != strstr(gprsBuffer,"RING")) {
+      TFTscreen.text("Incomming Call\n ",0,20);
+      TFTscreen.text(phone,0,30);
+      make_reaction(CALL);
+    }
+    
     /* Chek if there is new SMS and print or not */
-    else if(NULL != (s = strstr(gprsBuffer,"+CMTI: \"SM\""))) make_reaction(SMS);
+    else if(NULL != (s = strstr(gprsBuffer,"+CMTI: \"SM\""))) {
+      TFTscreen.text("New Message From: \n ",0,30);
+      TFTscreen.text(phone,0,30);
+      TFTscreen.text("Time: \n ",0,40);
+      TFTscreen.text(date,0,50);
+      make_reaction(SMS);
+    }
       
     /* Send message commented because we have not keyboard yet */
     //send_message(NUMBER, MESSAGE);
