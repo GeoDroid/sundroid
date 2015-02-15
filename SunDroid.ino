@@ -129,16 +129,17 @@ void setup()
   TFTscreen.stroke(255,255,255);
   TFTscreen.setTextSize(1);
   TFTscreen.text("SunDroid Is Running!\n ",0,0);
-  TFTscreen.setTextSize(2);
-  
 
   /* Setup GPRS/GSM Serial */
   Serial.begin(9600);
   while(myGPRS.init()) {
     delay(1000);
-    TFTscreen.text("GSM/GPRS Init Error!\n ",0,20);
+    TFTscreen.text("SunDroid Is Running!\n ",0,0);
+    TFTscreen.text("GSM/GPRS Init Error! Wait...\n ",0,20);
   }
   delay(3000);
+  TFTscreen.background(0, 0, 0);
+  TFTscreen.text("SunDroid Is Running!\n ",0,0);
   TFTscreen.text("SunDrid is ready!\n ",0,20);
 }
 
@@ -146,18 +147,18 @@ void setup()
 Main Loop  */
 void loop() 
 {
+  /* Setup Display */
+  TFTscreen.stroke(255,255,255);
+  TFTscreen.setTextSize(1);
+  
   /* Check GPRS module is readable or not */
   if(myGPRS.readable()) inComing = 1;
   else delay(100);
-  
+
   if(inComing)
   {
     /* Read GSM/GPRS buffer */
     sim900_read_buffer(gprsBuffer,32,DEFAULT_TIMEOUT);
-    
-    /* Setup Display */
-    //TFTscreen.stroke(255,255,255);
-    TFTscreen.setTextSize(2);
       
     /* Chek if there is incomming call and answer or not */
     if(NULL != strstr(gprsBuffer,"RING")) {
