@@ -17,9 +17,9 @@ Main file of SunDroid v0.2-Nightlie
 #include "core.h"
 
 /* Define pins for LCD Display */
-#define cs   10
-#define dc   9
-#define rst  6
+#define CS 10
+#define DC 9
+#define RST 6
 
 /* Define pins for GSM/GPRS Shield */
 #define PIN_TX 7
@@ -50,23 +50,23 @@ int yesState = 0;
 int noState = 0;
 
 /* Setup LCD pins */
-TFT TFTscreen = TFT(cs, dc, rst);
+TFT TFTscreen = TFT(CS, DC, RST);
 
 /* Set RX,TX and PWR BaudRate */
-GPRS myGPRS (PIN_TX,PIN_RX,BAUDRATE);
+GPRS m_gprs (PIN_TX,PIN_RX,BAUDRATE);
 
 /*------------------------------------
 Print SMS on display                */
 void get_sms() 
 {
-  smsIndex = is_message_unread();
+  smsIndex = m_gprs.is_message_unread();
   if (smsIndex > 0) 
     {
       /* Recive Message and Data */
-      read_message(smsIndex, sms, SMSLENGTH, phone, date);
+      m_gprs.read_message(smsIndex, sms, SMSLENGTH, phone, date);
 
       /* Delete old SMS' from SIM memory */
-      delete_message(smsIndex);
+      m_gprs.delete_message(smsIndex);
 
        /* Print Message */
       TFTscreen.stroke(255,255,255);
@@ -103,7 +103,7 @@ void make_reaction(int type)
   switch(btnResult) 
   {
     case 1:
-      if (type) answer();
+      if (type) m_gprs.answer();
       else get_sms();
       break;
     case 2:
@@ -128,11 +128,11 @@ void setup()
   TFTscreen.background(0, 0, 0);
   TFTscreen.stroke(255,255,255);
   TFTscreen.setTextSize(1);
-  TFTscreen.text("SunDroid Is Running!\n ",0,0);
+  TFTscreen.text("Welcome to SunDroid v0.2!\n ",0,0);
 
   /* Setup GPRS/GSM Serial */
   Serial.begin(9600);
-  while(myGPRS.init()) {
+  while(m_gprs.init()) {
     delay(1000);
     TFTscreen.text("SunDroid Is Running!\n ",0,0);
     TFTscreen.text("GSM/GPRS Init Error! Wait...\n ",0,20);
@@ -152,7 +152,7 @@ void loop()
   TFTscreen.setTextSize(1);
   
   /* Check GPRS module is readable or not */
-  if(myGPRS.readable()) inComing = 1;
+  if(m_gprs.readable()) inComing = 1;
   else delay(100);
 
   if(inComing)
@@ -175,7 +175,7 @@ void loop()
       TFTscreen.text(date,0,50);
       make_reaction(SMS);
     }
-      
+
     /* Send message commented because we have not keyboard yet */
     //send_message(NUMBER, MESSAGE);
         

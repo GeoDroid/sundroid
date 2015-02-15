@@ -28,7 +28,7 @@ GPRS::GPRS(PIN_T tx, PIN_T rx, uint32_t baudRate, const char* apn, const char* u
 
 /*----------------------------------------------------
 initialize GPRS module                              */
-int GPRS::init(void)
+int GPRS::GPRS::init(void)
 {
     if(sim900_check_with_cmd("AT\r\n","OK",DEFAULT_TIMEOUT,CMD)) return -1;
     if(sim900_check_with_cmd("AT+CFUN=1\r\n","OK",DEFAULT_TIMEOUT,CMD)) return -1;
@@ -39,7 +39,7 @@ int GPRS::init(void)
 
 /*----------------------------------------------------
 Check sim card satus                                */
-int sim_status(void)
+int GPRS::sim_status(void)
 {
     char gprsBuffer[32];
     int count = 0;
@@ -60,7 +60,7 @@ int sim_status(void)
 
 /*----------------------------------------------------
 Send message                                        */
-int send_message(char *num, char *data)
+int GPRS::send_message(char *num, char *data)
 {
     char cmd[32];
 
@@ -79,7 +79,7 @@ int send_message(char *num, char *data)
 
 /*----------------------------------------------------
 Check message is unread or not                      */
-int is_message_unread()
+int GPRS::is_message_unread()
 {
     char gprsBuffer[64];
     char *p,*s;
@@ -108,7 +108,7 @@ int is_message_unread()
 
 /*----------------------------------------------------
 Read message and change status to readed            */
-int read_message(int smsIndex, char *msg, int length, char *phone, char *date)  
+int GPRS::read_message(int smsIndex, char *msg, int length, char *phone, char *date)  
 {
     int i = 0;
     char gprsBuffer[100 + length];
@@ -157,7 +157,7 @@ int read_message(int smsIndex, char *msg, int length, char *phone, char *date)
 
 /*----------------------------------------------------
 Read message                                        */
-int read_message(int smsIndex, char *msg,int length)
+int GPRS::read_message(int smsIndex, char *msg,int length)
 {
     int i = 0;
     char gprsBuffer[100];
@@ -185,7 +185,7 @@ int read_message(int smsIndex, char *msg,int length)
 
 /*----------------------------------------------------
 Delete message                                      */
-int delete_message(int index)
+int GPRS::delete_message(int index)
 {
     char cmd[16];
     snprintf(cmd,sizeof(cmd),"AT+CMGD=%d\r\n",index);
@@ -196,7 +196,7 @@ int delete_message(int index)
 
 /*----------------------------------------------------
 Make call                                           */
-int make_call(char *num)
+int GPRS::make_call(char *num)
 {
     char cmd[24];
     if(0 != sim900_check_with_cmd("AT+COLP=1\r\n","OK",DEFAULT_TIMEOUT,CMD)) return -1;
@@ -208,7 +208,7 @@ int make_call(char *num)
 
 /*----------------------------------------------------
 Answer to call                                      */
-int answer(void)
+int GPRS::answer(void)
 {
     sim900_send_cmd("ATA\r\n");
     return 0;

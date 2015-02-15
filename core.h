@@ -16,30 +16,6 @@ Header file for library of SunDroid v0.2-Nightlie
 
 /* Message Length */
 #define MESSAGE_LENGTH  20
-    
-/* Send message */
-int send_message(char* num, char* data);
-
-/* Check if there is unread sms */
-int is_message_unread();
-    
-/* Read sms & change status to readed */
-int read_message(int smsIndex, char *msg, int length, char *phone, char *date);
-
-/* Read Messages */
-int read_message(int smsIndex, char *msg, int length);
-
-/* Delete messages on sim card */
-int delete_message(int index);
-
-/* Function for call */
-int make_call(char* num);
-
-/* Auto answer for incoming call */
-int answer(void);
-
-/* Check sim status */
-int sim_status(void);
  
 class GPRS
 {
@@ -51,6 +27,30 @@ public:
     static GPRS* getInstance() {
         return inst;
     };
+
+    /* Send message */
+    int send_message(char* num, char* data);
+
+    /* Check if there is unread sms */
+    int is_message_unread();
+        
+    /* Read sms & change status to readed */
+    int read_message(int smsIndex, char *msg, int length, char *phone, char *date);
+
+    /* Read Messages */
+    int read_message(int smsIndex, char *msg, int length);
+
+    /* Delete messages on sim card */
+    int delete_message(int index);
+
+    /* Function for call */
+    int make_call(char* num);
+
+    /* Auto answer for incoming call */
+    int answer(void);
+
+    /* Check sim status */
+    int sim_status(void);
     
     /* initialize GPRS module including SIM card check & signal strength */
     int init(void);
